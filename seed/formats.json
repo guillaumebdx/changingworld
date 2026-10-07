@@ -1,0 +1,92 @@
+[
+  {
+    "code": "duree",
+    "nom": "Durée d'une transformation",
+    "actif": true,
+    "gabarit": "À partir de [date], combien de temps a-t-il fallu pour que [grandeur] [double / triple / atteigne X] ?",
+    "exemple": "La population mondiale qui triple depuis l'an 1 : 1 800 ans.",
+    "reponses": "3 durées sur une échelle espacée (600 / 1 200 / 1 800).",
+    "ressort": "On imagine le progrès régulier, alors qu'il a stagné pendant des siècles."
+  },
+  {
+    "code": "datation",
+    "nom": "Datation",
+    "actif": true,
+    "gabarit": "À quelle époque [invention / événement / premier X] ?",
+    "exemple": "Le premier brevet de pompe à vapeur : XVIIe siècle.",
+    "reponses": "3 siècles consécutifs.",
+    "ressort": "La chose est plus ancienne (ou plus récente) qu'on ne le croit."
+  },
+  {
+    "code": "niveau",
+    "nom": "Niveau d'un indicateur à une date",
+    "actif": true,
+    "gabarit": "Quel(le) était [indicateur] en/au [lieu] en [date] ?",
+    "exemple": "L'espérance de vie en Europe de l'Ouest en 1830 : environ 33 ans.",
+    "reponses": "3 valeurs chiffrées rapprochées (33 / 42 / 50).",
+    "ressort": "Le choc vient de l'écart avec notre référence actuelle, que le joueur a en tête sans qu'on la lui donne."
+  },
+  {
+    "code": "sens_ampleur",
+    "nom": "Sens et ampleur d'une évolution",
+    "actif": true,
+    "gabarit": "[Grandeur] il y a [N] ans était-elle plus ou moins élevée qu'aujourd'hui ?",
+    "exemple": "Le nombre de langues il y a 2 000 ans : beaucoup plus élevé.",
+    "reponses": "Échelle qualitative (beaucoup plus / identique / beaucoup moins).",
+    "ressort": "Le plus proche de Gapminder : vise l'intuition « le monde progresse toujours ». Marche surtout quand la tendance réelle est inverse de l'intuitive."
+  },
+  {
+    "code": "ancrage",
+    "nom": "Comparaison avec un point d'ancrage",
+    "actif": true,
+    "gabarit": "En [date récente], [mesure] valait X. Combien valait-elle en [date antérieure] ?",
+    "exemple": "Le trajet New York - Boston en 1840 puis en 1790 (question non retenue : donnée trop discutable, le format reste bon).",
+    "reponses": "3 valeurs sur une échelle.",
+    "ressort": "L'ancre rend la question accessible sans connaissance préalable."
+  },
+  {
+    "code": "multiplicateur",
+    "nom": "Multiplicateur",
+    "actif": false,
+    "gabarit": "Combien de fois plus de X aujourd'hui qu'en [date] ?",
+    "exemple": null,
+    "reponses": "x2 / x10 / x100.",
+    "ressort": "Très fort pour le « choc des chiffres »."
+  },
+  {
+    "code": "proportion",
+    "nom": "Proportion",
+    "actif": false,
+    "gabarit": "Quelle part de la population mondiale [vivait en ville / savait lire] en [date] ?",
+    "exemple": null,
+    "reponses": "10 % / 30 % / 50 %.",
+    "ressort": null
+  },
+  {
+    "code": "comparaison_entites",
+    "nom": "Comparaison entre deux entités",
+    "actif": false,
+    "gabarit": "En [date], qui avait le PIB, la population, etc. le plus élevé : A, B ou C ?",
+    "exemple": null,
+    "reponses": "3 entités.",
+    "ressort": null
+  },
+  {
+    "code": "bascule",
+    "nom": "Point de bascule",
+    "actif": false,
+    "gabarit": "En quelle année [les urbains ont dépassé les ruraux / l'Asie a dépassé l'Europe] ?",
+    "exemple": null,
+    "reponses": "3 dates.",
+    "ressort": "Variante de la datation qui porte sur un croisement de courbes."
+  },
+  {
+    "code": "equivalence",
+    "nom": "Équivalence contemporaine",
+    "actif": false,
+    "gabarit": "La population mondiale de l'an 1 correspond à celle de quel pays aujourd'hui ?",
+    "exemple": "Déjà utilisé dans un indice (le Pakistan).",
+    "reponses": "3 pays ou entités actuelles.",
+    "ressort": null
+  }
+]

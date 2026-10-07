@@ -1,0 +1,71 @@
+[
+  {
+    "categorie": "Démographie",
+    "sous_categories": [
+      "Croissance de la population",
+      "Espérance de vie",
+      "Mortalité infantile",
+      "Migrations"
+    ]
+  },
+  {
+    "categorie": "Économie",
+    "sous_categories": [
+      "Croissance du PIB",
+      "Inégalités",
+      "Commerce mondial",
+      "Pauvreté"
+    ]
+  },
+  {
+    "categorie": "Santé",
+    "sous_categories": [
+      "Épidémies & pandémies",
+      "Hygiène & eau potable",
+      "Vaccination",
+      "Médecine & chirurgie"
+    ]
+  },
+  {
+    "categorie": "Technologie & Innovation",
+    "sous_categories": [
+      "Révolution industrielle",
+      "Énergie",
+      "Communications",
+      "Informatique & internet"
+    ]
+  },
+  {
+    "categorie": "Transport",
+    "sous_categories": [
+      "Chemin de fer",
+      "Navigation maritime",
+      "Aviation",
+      "Automobile"
+    ]
+  },
+  {
+    "categorie": "Urbanisation",
+    "sous_categories": [
+      "Exode rural",
+      "Mégalopoles",
+      "Infrastructure urbaine"
+    ]
+  },
+  {
+    "categorie": "Agriculture & Alimentation",
+    "sous_categories": [
+      "Révolution agricole",
+      "Famines",
+      "Rendements agricoles"
+    ]
+  },
+  {
+    "categorie": "Éducation & Culture",
+    "sous_categories": [
+      "Alphabétisation",
+      "Langues",
+      "Presse & médias"
+    ]
+  }
+]

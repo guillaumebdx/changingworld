@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Admin — editeur de question</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1&amp;family=Archivo:wght@400..700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body { margin: 0; font-family: Archivo, system-ui, sans-serif; }
+a { color: #A8432C; } a:hover { color: #7C2E1C; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #F2ECE1; color: #1E1A15; display: flex; flex-wrap: wrap; align-items: stretch; font-family: Archivo, system-ui, sans-serif">
+
+  <!-- rail -->
+  <nav aria-label="Navigation principale" style="flex: 0 0 204px; min-width: 180px; background: #E8DFCF; border-right: 1px solid #C4B79E; box-sizing: border-box; padding: 26px 18px 22px; display: flex; flex-direction: column; gap: 28px">
+    <div>
+      <div style="font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 30, 'WONK' 1; font-size: 19px; font-weight: 600; line-height: 1.1; letter-spacing: -0.01em">Changing<br>World</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.16em; color: #6F6559; margin-top: 7px">ATELIER ÉDITORIAL</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <a href="#questions" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 10px; text-decoration: none; color: #1E1A15; background: #F7F2E7; border: 1px solid #C4B79E; border-radius: 2px; font-size: 13px; font-weight: 600">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" stroke="currentColor" stroke-width="1.2"></rect><path d="M5 6.5h6M5 9.5h4" stroke="currentColor" stroke-width="1.2"></path></svg>
+        Questions
+        <span style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 500; color: #725310">61</span>
+      </a>
+      <a href="#generer" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 10px; text-decoration: none; color: #514940; font-size: 13px">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5 13.5 8 8 13.5 2.5 8z" stroke="currentColor" stroke-width="1.2"></path><circle cx="8" cy="8" r="1.6" fill="currentColor"></circle></svg>
+        Générer
+      </a>
+      <a href="Admin-Prompts.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 10px; text-decoration: none; color: #514940; font-size: 13px">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.5 4.5 2.5 8l3 3.5M10.5 4.5 13.5 8l-3 3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path></svg>
+        Prompts
+      </a>
+      <a href="#reglages" style="display: flex; align-items: center; gap: 10px; min-height: 40px; padding: 8px 10px; text-decoration: none; color: #514940; font-size: 13px">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 5.5h11M2.5 10.5h11" stroke="currentColor" stroke-width="1.2"></path><circle cx="6" cy="5.5" r="1.9" fill="#E8DFCF" stroke="currentColor" stroke-width="1.2"></circle><circle cx="10.5" cy="10.5" r="1.9" fill="#E8DFCF" stroke="currentColor" stroke-width="1.2"></circle></svg>
+        Réglages
+      </a>
+    </div>
+
+    <div style="margin-top: auto; border-top: 1px solid #C4B79E; padding-top: 14px">
+      <div style="font-size: 13px; font-weight: 600">Bernard</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em; color: #6F6559; margin-top: 3px">LIGNE ÉDITORIALE</div>
+    </div>
+  </nav>
+
+  <!-- contenu -->
+  <div style="flex: 999 1 720px; min-width: 0; box-sizing: border-box; padding: 26px 34px 34px">
+
+    <!-- en-tete -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between; border-bottom: 2px solid #1E1A15; padding-bottom: 14px; margin-bottom: 26px">
+      <div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+          <span style="font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 30, 'WONK' 1; font-size: 27px; font-weight: 600; letter-spacing: -0.015em">Question 1248</span>
+          <span style="background: #E8DFCF; border: 1px solid #C4B79E; color: #514940; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; padding: 4px 9px">BROUILLON IA</span>
+        </div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #6F6559; margin-top: 8px">GÉNÉRÉE LE 07.10.2026 À 09:12 · PROMPT « DURÉE D'UNE TRANSFORMATION » v4</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <button type="button" aria-label="Question précédente" style="min-width: 44px; min-height: 40px; background: #FBF7EF; border: 1px solid #C4B79E; border-radius: 2px; font: inherit; color: #514940; cursor: pointer">‹</button>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: #514940">24 / 61 À RELIRE</span>
+        <button type="button" aria-label="Question suivante" style="min-width: 44px; min-height: 40px; background: #FBF7EF; border: 1px solid #C4B79E; border-radius: 2px; font: inherit; color: #514940; cursor: pointer">›</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+
+      <!-- colonne formulaire -->
+      <div style="flex: 999 1 540px; min-width: 0">
+
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding-bottom: 20px">
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px">
+              <label for="f-cat" style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">CATÉGORIE</label>
+            </div>
+            <div style="display: flex; align-items: center; gap: 9px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 0 11px; min-height: 44px">
+              <span style="width: 9px; height: 9px; background: #A8432C; flex: none"></span>
+              <select id="f-cat" style="flex: 1; min-width: 0; background: transparent; border: 0; font: inherit; font-size: 14px; color: #1E1A15; padding: 11px 0; cursor: pointer">
+                <option>Démographie</option>
+                <option>Économie</option>
+                <option>Santé</option>
+                <option>Technologie</option>
+                <option>Transport</option>
+                <option>Urbanisation</option>
+                <option>Agriculture</option>
+                <option>Éducation</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px">
+              <label for="f-sub" style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">SOUS-CATÉGORIE</label>
+              <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+                RÉGÉNÉRER
+              </button>
+            </div>
+            <input id="f-sub" type="text" value="Croissance de la population" style="width: 100%; box-sizing: border-box; min-height: 44px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 14px; color: #1E1A15">
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px">
+              <label for="f-fmt" style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">FORMAT</label>
+            </div>
+            <div style="display: flex; align-items: center; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 0 11px; min-height: 44px">
+              <select id="f-fmt" style="flex: 1; min-width: 0; background: transparent; border: 0; font: inherit; font-size: 14px; color: #1E1A15; padding: 11px 0; cursor: pointer">
+                <option>Durée d'une transformation</option>
+                <option>Datation</option>
+                <option>Niveau d'un indicateur</option>
+                <option>Sens et ampleur d'une évolution</option>
+                <option>Comparaison avec un point d'ancrage</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- question -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 9px">
+            <label for="f-q" style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">QUESTION</label>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075">98 CAR.</span>
+              <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+                RÉGÉNÉRER
+              </button>
+            </div>
+          </div>
+          <textarea id="f-q" rows="2" style="width: 100%; box-sizing: border-box; background: #FFFFFF; border: 1.5px solid #1E1A15; border-radius: 2px; padding: 13px 14px; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 40, 'WONK' 1; font-size: 20px; font-weight: 600; line-height: 1.3; color: #1E1A15; resize: vertical">À partir de l'an 1, combien de temps a-t-il fallu pour que la population mondiale triple ?</textarea>
+        </div>
+
+        <!-- reponses -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 11px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">RÉPONSES — COCHER LA BONNE</span>
+            <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+              RÉGÉNÉRER LES TROIS
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <input type="radio" id="f-ra" name="bonne" style="width: 17px; height: 17px; accent-color: #1D5B45; flex: none; margin: 0">
+              <label for="f-ra" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #6F6559; width: 13px; flex: none">A</label>
+              <input type="text" value="600 ans" aria-label="Réponse A" style="flex: 1; min-width: 0; box-sizing: border-box; min-height: 44px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 14px; color: #1E1A15">
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <input type="radio" id="f-rb" name="bonne" style="width: 17px; height: 17px; accent-color: #1D5B45; flex: none; margin: 0">
+              <label for="f-rb" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #6F6559; width: 13px; flex: none">B</label>
+              <input type="text" value="1200 ans" aria-label="Réponse B" style="flex: 1; min-width: 0; box-sizing: border-box; min-height: 44px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 14px; color: #1E1A15">
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <input type="radio" id="f-rc" name="bonne" checked="checked" style="width: 17px; height: 17px; accent-color: #1D5B45; flex: none; margin: 0">
+              <label for="f-rc" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #1E1A15; width: 13px; flex: none">C</label>
+              <input type="text" value="1800 ans" aria-label="Réponse C" style="flex: 1; min-width: 0; box-sizing: border-box; min-height: 44px; background: #FFFFFF; border: 1.5px solid #1D5B45; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 14px; font-weight: 600; color: #1E1A15">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em; color: #16452F; flex: none">BONNE RÉPONSE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- indices -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 11px">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">INDICES — DU PLUS VAGUE AU PLUS PRÉCIS</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075">ENJEU 10 → 6 → 4 → 2</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px">
+                <label for="f-i1" style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #725310">INDICE 1</label>
+                <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+                  RÉGÉNÉRER
+                </button>
+              </div>
+              <textarea id="f-i1" rows="2" style="width: 100%; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 10px 12px; font: inherit; font-size: 13px; line-height: 1.45; color: #2E2820; resize: vertical">En l'an 1, la population mondiale était estimée à environ 225 millions d'habitants, soit moins que la population actuelle du Pakistan.</textarea>
+            </div>
+
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px">
+                <label for="f-i2" style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #725310">INDICE 2</label>
+                <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+                  RÉGÉNÉRER
+                </button>
+              </div>
+              <textarea id="f-i2" rows="2" style="width: 100%; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 10px 12px; font: inherit; font-size: 13px; line-height: 1.45; color: #2E2820; resize: vertical">Pendant des siècles, famines, épidémies et guerres ont maintenu la croissance à un niveau quasi nul.</textarea>
+            </div>
+
+            <!-- champ en cours de generation -->
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px">
+                <span style="display: flex; align-items: center; gap: 9px">
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #725310">INDICE 3</span>
+                  <span style="display: inline-flex; align-items: center; gap: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #8A6516">
+                    <span style="width: 5px; height: 5px; background: #8A6516; display: inline-block"></span>
+                    <span style="width: 5px; height: 5px; background: #8A6516; opacity: 0.55; display: inline-block"></span>
+                    <span style="width: 5px; height: 5px; background: #8A6516; opacity: 0.25; display: inline-block"></span>
+                    L'IA RÉDIGE…
+                  </span>
+                </span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075">ANNULER</span>
+              </div>
+              <div style="background: #FCF6E8; border: 1.5px dashed #8A6516; border-radius: 2px; padding: 12px">
+                <div style="height: 9px; background: #E4D6B4; width: 94%"></div>
+                <div style="height: 9px; background: #E4D6B4; width: 78%; margin-top: 8px"></div>
+                <div style="height: 9px; background: #E4D6B4; width: 46%; margin-top: 8px"></div>
+                <div style="margin-top: 13px; height: 2px; background: #E4D6B4"><div style="height: 2px; width: 62%; background: #8A6516"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- commentaire -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 7px">
+            <label for="f-com" style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">COMMENTAIRE RÉVÉLÉ APRÈS RÉPONSE</label>
+            <button type="button" style="display: inline-flex; align-items: center; gap: 5px; background: transparent; border: 0; padding: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; cursor: pointer">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.6-3.45" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path><path d="M10.6 1.4v2.2H8.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path></svg>
+              RÉGÉNÉRER
+            </button>
+          </div>
+          <textarea id="f-com" rows="3" style="width: 100%; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 13px; line-height: 1.5; color: #2E2820; resize: vertical">En l'an 1 : 225 millions. En 1700 : 603 millions. En 1820 : 1,041 milliard. Le cap des 675 millions a probablement été franchi vers 1720.</textarea>
+        </div>
+
+        <!-- source -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0; display: grid; grid-template-columns: 1fr 1.25fr; gap: 18px">
+          <div>
+            <label for="f-src" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940; margin-bottom: 7px">SOURCE</label>
+            <input id="f-src" type="text" value="Maddison Project Database" style="width: 100%; box-sizing: border-box; min-height: 44px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 14px; color: #1E1A15">
+          </div>
+          <div>
+            <label for="f-url" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940; margin-bottom: 7px">LIEN VÉRIFIABLE</label>
+            <input id="f-url" type="url" value="https://www.rug.nl/ggdc/historicaldevelopment/maddison/" style="width: 100%; box-sizing: border-box; min-height: 44px; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 11px 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #2E2820">
+          </div>
+        </div>
+
+        <!-- commentaire interne -->
+        <div style="border-top: 1px solid #D8CDB9; padding: 18px 0 22px">
+          <label for="f-int" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #725310; margin-bottom: 7px">COMMENTAIRE INTERNE — JAMAIS PUBLIÉ</label>
+          <textarea id="f-int" rows="2" style="width: 100%; box-sizing: border-box; background: #F7EFDC; border: 1px solid #C9AE6E; border-radius: 2px; padding: 11px 12px; font: inherit; font-size: 13px; line-height: 1.5; color: #4A3C14; resize: vertical">Vérifier que « triple » est bien compris comme un triplement de l'an 1, pas de 1700. Reformuler si deux relecteurs hésitent.</textarea>
+        </div>
+
+        <!-- barre d'action -->
+        <div style="border-top: 2px solid #1E1A15; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+          <button type="button" style="min-height: 48px; background: #1E1A15; border: 1.5px solid #1E1A15; border-radius: 2px; padding: 12px 26px; font: inherit; font-size: 14px; font-weight: 600; color: #F2ECE1; cursor: pointer">Valider</button>
+          <button type="button" style="min-height: 48px; background: transparent; border: 1.5px solid #8A6516; border-radius: 2px; padding: 12px 20px; font: inherit; font-size: 14px; font-weight: 600; color: #725310; cursor: pointer">À affiner</button>
+          <button type="button" style="min-height: 48px; background: transparent; border: 1.5px solid #B5A894; border-radius: 2px; padding: 12px 20px; font: inherit; font-size: 14px; font-weight: 500; color: #6F6559; cursor: pointer">Non retenue</button>
+          <span style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; color: #8A8075">⌘↵ VALIDER · ⌘→ QUESTION SUIVANTE</span>
+        </div>
+      </div>
+
+      <!-- colonne apercu -->
+      <div style="flex: 1 1 372px; min-width: 300px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #514940">APERÇU JOUEUR</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075">iPHONE 390 PT</span>
+        </div>
+
+        <div style="display: flex; gap: 4px; margin-bottom: 16px">
+          <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+            <button type="button" onClick="{{ s.pick }}" style="{{ s.style }}">{{ s.label }}</button>
+          </sc-for>
+        </div>
+
+        <!-- telephone simule -->
+        <div style="background: #1E1A15; border-radius: 30px; padding: 9px; width: 100%; max-width: 356px; box-sizing: border-box">
+          <div style="background: #F2ECE1; border-radius: 22px; overflow: hidden; height: 680px; display: flex; flex-direction: column">
+
+            <sc-if value="{{ reveal }}" hint-placeholder-val="{{ false }}">
+              <div style="flex: none; background: #1D5B45; box-sizing: border-box; padding: 15px 15px 13px">
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                  <span style="display: flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #FBF7EF"><span style="width: 7px; height: 7px; background: #E5A08C; display: inline-block"></span>DÉMOGRAPHIE</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #FBF7EF; opacity: 0.85">TOTAL 150</span>
+                </div>
+                <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 14px">
+                  <span style="font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 30, 'WONK' 1; font-size: 31px; font-weight: 600; color: #FBF7EF; line-height: 1">Juste</span>
+                  <span style="font-family: Fraunces, Georgia, serif; font-size: 34px; font-weight: 600; color: #FBF7EF; line-height: 1">+2</span>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ asking }}" hint-placeholder-val="{{ true }}">
+              <div style="position: relative; flex: none; height: 104px; background: #A8432C; overflow: hidden">
+                <div style="position: absolute; left: -50px; top: -110px; width: 280px; height: 280px; border: 1px solid rgba(251,247,239,0.2); border-radius: 50%"></div>
+                <div style="position: absolute; right: -90px; top: -50px; width: 210px; height: 210px; border: 1px solid rgba(251,247,239,0.18); border-radius: 50%"></div>
+                <div style="position: relative; height: 100%; box-sizing: border-box; padding: 15px 15px 12px; display: flex; flex-direction: column; justify-content: space-between">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #FBF7EF; line-height: 1.6">DÉMOGRAPHIE<br><span style="opacity: 0.8">› CROISSANCE DE LA POPULATION</span></span>
+                    <span style="font-family: Fraunces, Georgia, serif; font-size: 17px; font-weight: 600; color: #FBF7EF; line-height: 1">148</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: flex-end">
+                    <span style="background: #F7EFDC; border: 1px solid #8A6516; color: #725310; font-family: 'IBM Plex Mono', monospace; font-size: 8px; font-weight: 500; letter-spacing: 0.16em; padding: 3px 7px">SURPRENANT</span>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em; color: #FBF7EF; opacity: 0.85">12 / 40</span>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="flex: 1; min-height: 0; box-sizing: border-box; padding: 15px; display: flex; flex-direction: column; border-top: 2px solid #1E1A15; overflow: hidden">
+
+              <div style="font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 40, 'WONK' 1; font-size: 19px; font-weight: 600; line-height: 1.24; letter-spacing: -0.01em; margin-bottom: 13px">À partir de l'an 1, combien de temps a-t-il fallu pour que la population mondiale triple&nbsp;?</div>
+
+              <sc-if value="{{ h1 }}" hint-placeholder-val="{{ true }}">
+                <div style="background: #FBF7EF; border: 1px solid #C4B79E; border-radius: 2px; padding: 9px 11px; margin-bottom: 7px">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.16em; color: #725310; margin-bottom: 4px">INDICE 1</div>
+                  <div style="font-size: 11.5px; line-height: 1.45; color: #2E2820">En l'an 1, la population mondiale était estimée à environ 225 millions d'habitants, soit moins que la population actuelle du Pakistan.</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ h2 }}" hint-placeholder-val="{{ true }}">
+                <div style="background: #FBF7EF; border: 1px solid #C4B79E; border-radius: 2px; padding: 9px 11px; margin-bottom: 7px">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.16em; color: #725310; margin-bottom: 4px">INDICE 2</div>
+                  <div style="font-size: 11.5px; line-height: 1.45; color: #2E2820">Pendant des siècles, famines, épidémies et guerres ont maintenu la croissance à un niveau quasi nul.</div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ h3 }}" hint-placeholder-val="{{ true }}">
+                <div style="background: #FBF7EF; border: 1px solid #C4B79E; border-radius: 2px; padding: 9px 11px; margin-bottom: 7px">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.16em; color: #725310; margin-bottom: 4px">INDICE 3</div>
+                  <div style="font-size: 11.5px; line-height: 1.45; color: #2E2820">C'est seulement vers 1800 que la population mondiale a franchi le cap des 450 millions, soit le double de l'an 1.</div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ asking }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 7px">
+                  <div style="display: flex; align-items: center; gap: 11px; min-height: 42px; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 9px 11px">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #6F6559; width: 11px; flex: none">A</span><span style="font-size: 14px">600 ans</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 11px; min-height: 42px; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 9px 11px">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #6F6559; width: 11px; flex: none">B</span><span style="font-size: 14px">1200 ans</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 11px; min-height: 42px; box-sizing: border-box; background: #FBF7EF; border: 1.5px solid #C4B79E; border-radius: 2px; padding: 9px 11px">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #6F6559; width: 11px; flex: none">C</span><span style="font-size: 14px">1800 ans</span>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ reveal }}" hint-placeholder-val="{{ false }}">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 11px; min-height: 42px; box-sizing: border-box; background: #1D5B45; border: 1.5px solid #1D5B45; border-radius: 2px; padding: 9px 11px; color: #FBF7EF; margin-bottom: 13px">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; width: 11px; flex: none">C</span><span style="font-size: 14px; font-weight: 600">1800 ans</span>
+                    <span style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em">BONNE RÉPONSE</span>
+                  </div>
+                  <div style="border-top: 2px solid #1E1A15; border-bottom: 1px solid #C4B79E; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))">
+                    <div style="padding: 9px 8px 10px 0; border-right: 1px solid #D8CDB9">
+                      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.14em; color: #6F6559">AN 1</div>
+                      <div style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.2">225<span style="font-size: 11px; font-family: Archivo, sans-serif; color: #514940"> M</span></div>
+                    </div>
+                    <div style="padding: 9px 8px 10px; border-right: 1px solid #D8CDB9">
+                      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.14em; color: #6F6559">1700</div>
+                      <div style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.2">603<span style="font-size: 11px; font-family: Archivo, sans-serif; color: #514940"> M</span></div>
+                    </div>
+                    <div style="padding: 9px 0 10px 10px">
+                      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 7px; letter-spacing: 0.14em; color: #6F6559">1820</div>
+                      <div style="font-family: Fraunces, Georgia, serif; font-size: 20px; font-weight: 600; line-height: 1.2">1,041<span style="font-size: 11px; font-family: Archivo, sans-serif; color: #514940"> Md</span></div>
+                    </div>
+                  </div>
+                  <div style="font-size: 12px; line-height: 1.5; color: #2E2820; padding-top: 11px">Le cap des 675&nbsp;millions a probablement été franchi vers <span style="font-family: Fraunces, Georgia, serif; font-size: 16px; font-weight: 600; color: #A8432C">1720</span>.</div>
+                  <div style="margin-top: 12px; border-top: 1px dotted #C4B79E; padding-top: 9px; display: flex; justify-content: space-between">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.12em; color: #6F6559">SOURCE</span>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.08em; color: #1D5B45">MADDISON PROJECT DATABASE ↗</span>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ asking }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top: auto; padding-top: 14px">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 42px; box-sizing: border-box; border: 1.5px dashed #8A6516; border-radius: 2px; padding: 10px 12px; font-size: 13px; font-weight: 600; color: #725310">
+                    <span>{{ hintLabel }}</span>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 400">{{ hintCount }}</span>
+                  </div>
+                  <div style="border-top: 1px solid #C4B79E; margin-top: 11px; padding-top: 9px; display: flex; align-items: baseline; justify-content: space-between">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; color: #6F6559">ENJEU ACTUEL</span>
+                    <span style="display: flex; align-items: baseline; gap: 9px">
+                      <span style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600; color: #1D5B45; line-height: 1">{{ gain }}</span>
+                      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #8A8075">/</span>
+                      <span style="font-family: Fraunces, Georgia, serif; font-size: 19px; font-weight: 600; color: #A8432C; line-height: 1">{{ perte }}</span>
+                    </span>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #8A8075; margin-top: 12px; line-height: 1.7">L'APERÇU SE MET À JOUR À CHAQUE FRAPPE.<br>L'ILLUSTRATION DE FOND EST ICI UN PLACEHOLDER.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var step = (this.state && this.state.step != null) ? this.state.step : 0;
+    var labels = ["Question", "Indice 1", "Indice 2", "Indice 3", "Réponse"];
+    var base = "flex: 1; min-width: 0; min-height: 44px; padding: 7px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 2px; cursor: pointer; ";
+    var self = this;
+    var steps = labels.map(function (label, i) {
+      var on = i === step;
+      return {
+        label: label,
+        pick: function () { self.setState({ step: i }); },
+        style: base + (on
+          ? "background: #1E1A15; color: #F2ECE1; border: 1px solid #1E1A15; font-weight: 600;"
+          : "background: #FBF7EF; color: #514940; border: 1px solid #C4B79E; font-weight: 400;")
+      };
+    });
+    var gains = ["+10", "+6", "+4", "+2", "+2"];
+    var pertes = ["−5", "−3", "−2", "−1", "−1"];
+    return {
+      steps: steps,
+      reveal: step === 4,
+      asking: step !== 4,
+      h1: step >= 1,
+      h2: step >= 2,
+      h3: step >= 3,
+      gain: gains[step],
+      perte: pertes[step],
+      hintLabel: step >= 3 ? "Plus d'indice disponible" : "Demander un indice",
+      hintCount: step + " / 3"
+    };
+  }
+}
+</script>
+</body>
+</html>

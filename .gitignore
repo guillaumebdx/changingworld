@@ -1,0 +1,29 @@
+# Dépendances
+node_modules/
+
+# Secrets
+.env
+.env.local
+
+# Base SQLite
+data/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.db
+
+# Builds
+dist/
+apps/*/dist/
+packages/*/dist/
+
+# Captures d'écran et artefacts Playwright
+captures/
+test-results/
+playwright-report/
+
+# Divers
+.DS_Store
+Thumbs.db
+*.log

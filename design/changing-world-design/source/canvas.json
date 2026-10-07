@@ -1,0 +1,44 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-07T18:00:00Z" },
+  "title": "Changing World",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "designSystems": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1240, "h": 2160, "title": "Direction visuelle" },
+    "Mobile-Question.dc.html": { "x": 0, "y": 2500, "w": 390, "h": 844, "title": "a · Question, aucun indice" },
+    "Mobile-Indices.dc.html": { "x": 470, "y": 2500, "w": 390, "h": 844, "title": "b · Deux indices demandes" },
+    "Mobile-Juste.dc.html": { "x": 940, "y": 2500, "w": 390, "h": 844, "title": "c · Reponse juste" },
+    "Mobile-Faux.dc.html": { "x": 1410, "y": 2500, "w": 390, "h": 844, "title": "d · Reponse fausse" },
+    "Mobile-Score.dc.html": { "x": 1880, "y": 2500, "w": 390, "h": 844, "title": "e · Progression" },
+    "Admin-Editeur.dc.html": { "x": 0, "y": 3684, "w": 1440, "h": 1240, "title": "Editeur de question", "expand": "fill", "is_interactive": true },
+    "Admin-Prompts.dc.html": { "x": 1520, "y": 3684, "w": 1440, "h": 1160, "title": "Prompts", "expand": "fill" }
+  },
+  "order": [
+    "Main.dc.html",
+    "Mobile-Question.dc.html",
+    "Mobile-Indices.dc.html",
+    "Mobile-Juste.dc.html",
+    "Mobile-Faux.dc.html",
+    "Mobile-Score.dc.html",
+    "Admin-Editeur.dc.html",
+    "Admin-Prompts.dc.html"
+  ],
+  "notes": {
+    "n-mobile": {
+      "x": 0,
+      "y": 2260,
+      "text": "App joueur — iPhone",
+      "kind": "title1",
+      "maxW": 2270
+    },
+    "n-admin": {
+      "x": 0,
+      "y": 3444,
+      "text": "Admin éditorial — desktop 1440",
+      "kind": "title1",
+      "maxW": 2960
+    }
+  }
+}

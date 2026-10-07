@@ -1,0 +1,35 @@
+{
+  "name": "changing-world",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Changing World : admin éditoriale et API du jeu",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,admin -c blue,magenta \"npm run dev -w apps/api\" \"npm run dev -w apps/admin\"",
+    "build": "npm run build --workspaces --if-present",
+    "db:migrate": "npm run db:migrate -w apps/api",
+    "db:seed": "npm run db:seed -w apps/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "test": "npm test --workspaces --if-present",
+    "capture": "node scripts/capture.mjs",
+    "e2e": "node scripts/flux-e2e.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.4.0",
+    "playwright": "^1.64.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}

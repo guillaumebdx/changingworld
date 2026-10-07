@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@theme {
+  /* Papier et encre */
+  --color-papier: #f2ece1;
+  --color-surface: #fbf7ef;
+  --color-rail: #e8dfcf;
+  --color-blanc: #ffffff;
+  --color-encre: #1e1a15;
+  --color-encre-80: #2e2820;
+  --color-encre-70: #514940;
+  --color-encre-50: #6f6559;
+  --color-encre-30: #8a8075;
+  --color-filet: #d8cdb9;
+  --color-filet-fort: #c4b79e;
+  --color-filet-mute: #b5a894;
+
+  /* Verdicts */
+  --color-juste: #1d5b45;
+  --color-juste-fond: #e3ede6;
+  --color-juste-texte: #16452f;
+  --color-faux: #8a2e1c;
+  --color-faux-vif: #a8432c;
+  --color-faux-fond: #f7e2dc;
+  --color-faux-texte: #7a2817;
+
+  /* Indices et travail éditorial */
+  --color-indice: #8a6516;
+  --color-indice-texte: #725310;
+  --color-indice-fond: #f7efdc;
+  --color-indice-fond-ia: #fcf6e8;
+  --color-indice-bordure-interne: #c9ae6e;
+  --color-squelette: #e4d6b4;
+
+  /* Polices */
+  --font-fraunces: "Fraunces", Georgia, serif;
+  --font-ui: "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Formes */
+  --radius-fin: 2px;
+  --radius-telephone: 30px;
+  --radius-ecran: 22px;
+
+  /* Espacement des étiquettes mono */
+  --tracking-etiquette: 0.14em;
+  --tracking-etiquette-large: 0.18em;
+}
+
+@layer base {
+  html {
+    background: var(--color-papier);
+    color: var(--color-encre);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--color-faux-vif);
+  }
+
+  a:hover {
+    color: #7c2e1c;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--color-indice-fond);
+  }
+}
+
+@utility font-titre {
+  font-family: var(--font-fraunces);
+  font-variation-settings: "SOFT" 30, "WONK" 1;
+}
+
+@utility font-titre-doux {
+  font-family: var(--font-fraunces);
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+}
+
+@utility font-chiffre {
+  font-family: var(--font-fraunces);
+  font-variation-settings: "SOFT" 20, "WONK" 0;
+}
+
+/* Étiquette mono en capitales espacées */
+@utility etiquette {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility etiquette-xs {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@utility etiquette-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Champ de saisie standard */
+@utility champ {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 44px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-filet-fort);
+  border-radius: var(--radius-fin);
+  padding: 11px 12px;
+  font-size: 14px;
+  color: var(--color-encre);
+  outline: none;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.champ:focus,
+.champ:focus-within {
+  border-color: var(--color-encre);
+  background: var(--color-blanc);
+}
+
+.champ::placeholder {
+  color: var(--color-encre-30);
+}
+
+.champ:disabled {
+  color: var(--color-encre-50);
+  background: var(--color-rail);
+}
+
+/* Lignes de squelette pour le chargement */
+@keyframes squelette-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@utility squelette {
+  background: var(--color-squelette);
+  animation: squelette-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes points-ia {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+
+@utility point-ia {
+  width: 5px;
+  height: 5px;
+  background: var(--color-indice);
+  display: inline-block;
+  animation: points-ia 1.2s infinite ease-in-out;
+}
+
+/* Tableau sobre */
+@utility tableau {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--color-encre);
+}
+
+.tableau th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-encre-50);
+  text-align: left;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--color-filet-fort);
+}
+
+.tableau td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--color-filet);
+  vertical-align: top;
+}
+
+.tableau tbody tr:hover td {
+  background: var(--color-surface);
+}
