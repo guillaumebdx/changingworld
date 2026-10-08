@@ -35,7 +35,7 @@ Sans `OPENAI_API_KEY`, l'atelier tourne en **mode démo** : les générations so
 - `seed/` : taxonomie, formats, questions de référence.
 - `design/` : maquettes, référence visuelle seulement.
 
-Documents : `DESIGN.md` (principes, tokens, composants), `DECISIONS.md` (choix et limites), `CLAUDE.md` (contexte pour l'assistant).
+Documents : `DESIGN.md` (principes, tokens, composants), `DECISIONS.md` (choix et limites), `CLAUDE.md` (contexte pour l'assistant), `deploy/DEPLOIEMENT.md` (mise en production : nginx, systemd, mises à jour).
 
 ## API
 

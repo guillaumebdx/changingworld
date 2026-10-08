@@ -152,9 +152,20 @@ export function QuestionCard(props: QuestionCardProps) {
             </div>
             <div className="mt-auto flex items-center justify-between gap-2 border-t border-dotted border-filet-fort pt-[9px]">
               <span className="etiquette-xs text-encre-50">Source</span>
-              <span className="etiquette-xs truncate text-right tracking-[0.08em] text-juste">
-                {question.source_nom.trim() ? `${question.source_nom} ↗` : <span className="italic text-encre-30">source à renseigner</span>}
-              </span>
+              {question.source_nom.trim() && question.source_lien.trim() ? (
+                <a
+                  href={question.source_lien}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="etiquette-xs truncate text-right tracking-[0.08em] text-juste underline decoration-juste/40 underline-offset-[3px] hover:decoration-juste"
+                >
+                  {question.source_nom} ↗
+                </a>
+              ) : (
+                <span className="etiquette-xs truncate text-right tracking-[0.08em] text-juste">
+                  {question.source_nom.trim() ? question.source_nom : <span className="italic text-encre-30">source à renseigner</span>}
+                </span>
+              )}
             </div>
           </>
         ) : (

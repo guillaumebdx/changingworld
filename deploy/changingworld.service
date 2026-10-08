@@ -1,0 +1,21 @@
+# /etc/systemd/system/changingworld.service
+[Unit]
+Description=Changing World : API et admin éditoriale
+After=network.target
+
+[Service]
+Type=simple
+# Node est installé via nvm dans le compte ubuntu : on passe par un shell de connexion pour le trouver.
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/var/www/changingworld
+Environment=NODE_ENV=production
+# Les secrets restent dans /var/www/changingworld/.env (lu par l'API au démarrage)
+ExecStart=/bin/bash -lc 'npm run start -w apps/api'
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/changingworld/sortie.log
+StandardError=append:/var/log/changingworld/erreurs.log
+
+[Install]
+WantedBy=multi-user.target

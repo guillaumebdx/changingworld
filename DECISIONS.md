@@ -9,7 +9,7 @@ Décisions prises pendant la construction, quand le cahier des charges laissait 
 
 ## Stack et versions
 
-- **Node 24, npm 11** (machine de développement). Minimum déclaré : Node ≥ 20.12 (pour `process.loadEnvFile`).
+- **Node 24, npm 11** (machine de développement). Minimum déclaré : Node ≥ 22 (exigé par le SDK OpenAI 7 ; better-sqlite3 fournit des binaires précompilés pour cette version).
 - **Tailwind v4** (configuration CSS-first via `@theme` dans `apps/admin/src/styles/theme.css`) plutôt que v3 et `tailwind.config.js` : c'est la version courante, et les tokens restent lisibles dans un seul fichier CSS.
 - **Zod 4** : `z.toJSONSchema` est intégré, ce qui évite une dépendance pour les Structured Outputs. Le schéma est durci (`additionalProperties: false`, tous les champs requis) par `versJsonSchemaStrict`.
 - **SDK OpenAI 7**, API Chat Completions en streaming avec `response_format: json_schema` strict. L'API Responses aurait aussi convenu ; Chat Completions est la plus documentée pour le streaming de JSON schema.
