@@ -39,8 +39,9 @@ npm run db:seed
 sudo chown -R ubuntu:ubuntu /var/www/changingworld /var/log/changingworld
 chmod 600 /var/www/changingworld/.env
 
-# 7. Service systemd
-sudo cp deploy/changingworld.service /etc/systemd/system/changingworld.service
+# 7. Service systemd (le chemin de Node 22 est injecté dans le fichier)
+NODE_BIN=$(dirname $(which node))
+sed "s|NODE_BIN|$NODE_BIN|g" deploy/changingworld.service | sudo tee /etc/systemd/system/changingworld.service > /dev/null
 sudo systemctl daemon-reload
 sudo systemctl enable --now changingworld
 sudo systemctl status changingworld

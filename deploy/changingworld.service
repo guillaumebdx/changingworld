@@ -5,13 +5,14 @@ After=network.target
 
 [Service]
 Type=simple
-# Node est installé via nvm dans le compte ubuntu : on passe par un shell de connexion pour le trouver.
 User=ubuntu
 Group=ubuntu
 WorkingDirectory=/var/www/changingworld
 Environment=NODE_ENV=production
+# Node 22 installé par nvm : remplacer NODE_BIN par la sortie de `dirname $(which node)` sous le compte ubuntu.
+Environment=PATH=NODE_BIN:/usr/local/bin:/usr/bin:/bin
 # Les secrets restent dans /var/www/changingworld/.env (lu par l'API au démarrage)
-ExecStart=/bin/bash -lc 'npm run start -w apps/api'
+ExecStart=NODE_BIN/node /var/www/changingworld/node_modules/tsx/dist/cli.mjs /var/www/changingworld/apps/api/src/index.ts
 Restart=always
 RestartSec=5
 StandardOutput=append:/var/log/changingworld/sortie.log
